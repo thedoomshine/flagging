@@ -1,16 +1,27 @@
-import 'the-new-css-reset/css/reset.css'
+import './globals.css'
 
-import { Inter } from 'next/font/google'
 import { cookies } from 'next/headers'
+import * as stylex from '@stylexjs/stylex'
 
 import { TRPCReactProvider } from '~/trpc/react'
+import { color, font, text } from './globalTokens.stylex'
 
-const inter = Inter({
-	subsets: ['latin'],
+const styles = stylex.create({
+	html: {
+		colorScheme: 'dark',
+	},
+	body: {
+		backgroundColor: color.black,
+		color: color.white,
+		fontSize: text.md,
+		fontFamily: font.sans,
+		height: '100dvh',
+		width: '100vw',
+	},
 })
 
 export const metadata = {
-	title: 'flagg.ing',
+	title: 'flagg.ing 🚩',
 	description: 'homosocialization for terminally online perverts',
 	icons: [{ rel: 'icon', url: '/favicon.ico' }],
 }
@@ -21,8 +32,11 @@ export default function RootLayout({
 	children: React.ReactNode
 }) {
 	return (
-		<html lang='en'>
-			<body className={inter.className}>
+		<html
+			{...stylex.props(styles.html)}
+			lang='en'
+		>
+			<body {...stylex.props(styles.body)}>
 				<TRPCReactProvider cookies={cookies().toString()}>
 					{children}
 				</TRPCReactProvider>
