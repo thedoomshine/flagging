@@ -5,19 +5,17 @@ import * as stylex from '@stylexjs/stylex'
 export const colors = stylex.defineVars({
 	// chubby
 	apricot: '#fbceb1',
-	// rimmer
+	// rimming
 	beige: '#faf0e6',
-	// S&M
-	black: {
-		default: '#100c08',
-	},
+	// s&m
+	black: '#100c08',
 	// oral
 	blueLight: '#add8e6',
-	// fucker (top/bottom)
+	// top/bottom
 	blueNavy: '#000080',
 	// 69
 	blueRobinsEgg: '#1fcecb',
-	// CBT
+	// cbt
 	blueTeal: '#008080',
 	// scat
 	brown: '#654321',
@@ -33,7 +31,7 @@ export const colors = stylex.defineVars({
 	greenHunter: '#355e3b',
 	// renting/buying
 	greenKelly: '#4cbb17',
-	// dines/buying
+	// dining/buying
 	greenLime: '#bfff00',
 	// milk (cow print)
 	holstein: '#fefcff',
@@ -41,7 +39,7 @@ export const colors = stylex.defineVars({
 	lavender: '#bf94e4',
 	// armpits
 	magenta: '#8b008b',
-	// cuts/bleeds
+	// blood
 	maroon: '#800000',
 	// navel worship
 	mauve: '#e0b0ff',
