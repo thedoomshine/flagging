@@ -27,9 +27,6 @@ export default async function Icon() {
 			>
 				<Hanky
 					style={{
-						position: 'absolute',
-						bottom: 0,
-						left: 0,
 						height: '100%',
 						width: '100%',
 						'--hanky-bg': 'red',

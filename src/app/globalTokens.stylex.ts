@@ -7,8 +7,6 @@ const MAX_SCALE = 1.333
 const MIN_BASE_SIZE = 16
 const MAX_BASE_SIZE = 20
 
-// const LIGHT = '@media (prefers-color-scheme: light)'
-
 export const color = stylex.defineVars({
 	black: '#000000', // s&m
 	charcoal: '#333333', // latex

@@ -1,22 +1,24 @@
-import Link from 'next/link'
 import * as stylex from '@stylexjs/stylex'
 
-import { color, spacing } from '../globalTokens.stylex'
+import { color, spacing, text } from '../globalTokens.stylex'
+import FooterLink from './footer-link'
 
 const styles = stylex.create({
-	header: {
+	footer: {
 		display: 'grid',
+		placeContent: 'end',
 		backgroundColor: color.black,
+		fontSize: text.sm,
 		gridColumn: 'content / right-gutter',
 		padding: `${spacing.sm} 0`,
-		gridRow: 'header',
-	}
+		gridRow: 'footer',
+	},
 })
 
 export default function PageHeader() {
 	return (
-		<header {...stylex.props(styles.header)}>
-			<Link href='/'>flagg.ing 🚩</Link>
-		</header>
+		<footer {...stylex.props(styles.footer)}>
+			<FooterLink />
+		</footer>
 	)
 }

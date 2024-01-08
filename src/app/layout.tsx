@@ -1,10 +1,10 @@
 import './globals.css'
 
-import { cookies } from 'next/headers'
 import * as stylex from '@stylexjs/stylex'
 
-import { TRPCReactProvider } from '~/trpc/react'
-import { color, font, text } from './globalTokens.stylex'
+import PageFooter from './_components/page-footer'
+import PageHeader from './_components/page-header'
+import { color, font, spacing, text } from './globalTokens.stylex'
 
 const styles = stylex.create({
 	html: {
@@ -17,13 +17,21 @@ const styles = stylex.create({
 		fontFamily: font.sans,
 		height: '100dvh',
 		width: '100vw',
+		display: 'grid',
+		gridTemplateColumns: `[left-gutter] minmax(${spacing.xs},1fr) [content] 7fr [right-gutter] minmax(${spacing.xs},1fr)`,
+		gridTemplateRows: '[header] min-content [body] auto [footer] min-content',
+	},
+	main: {
+		display: 'grid',
+		gridColumn: 'content',
+		gridRow: 'body',
 	},
 })
 
 export const metadata = {
 	title: 'flagg.ing 🚩',
 	description: 'homosocialization for terminally online perverts',
-	icons: [{ rel: 'icon', url: '/favicon.ico' }],
+	icons: [{ rel: 'icon', url: '/icon' }],
 }
 
 export default function RootLayout({
@@ -37,9 +45,9 @@ export default function RootLayout({
 			lang='en'
 		>
 			<body {...stylex.props(styles.body)}>
-				<TRPCReactProvider cookies={cookies().toString()}>
-					{children}
-				</TRPCReactProvider>
+				<PageHeader />
+				<main {...stylex.props(styles.main)}>{children}</main>
+				<PageFooter />
 			</body>
 		</html>
 	)
