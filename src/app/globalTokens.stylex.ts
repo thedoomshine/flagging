@@ -101,15 +101,12 @@ const INTERCEPT = {
 
 export const font = stylex.defineVars({
 	sans: [
-		'ui-rounded',
-		'"Hiragino Maru Gothic ProN"',
-		'Quicksand',
-		'Comfortaa',
-		'Manjari',
-		'"Arial Rounded MT"',
-		'"Arial Rounded MT Bold"',
-		'Calibri',
-		'source-sans-pro',
+		'"Atkinson Hyperlegible"',
+		'system-ui',
+		'sans-serif',
+	].join(', '),
+	title: [
+		'Caprasimo',
 		'sans-serif',
 	].join(', '),
 })
@@ -265,4 +262,8 @@ export const spacing = stylex.defineVars({
 	xxxxl: `clamp(${MIN_SPACE.xxxxl}px, calc(${INTERCEPT_SPACE.xxxxl}px - ${
 		Math.round(10000 * SLOPE_SPACE.xxxxl) / 100
 	}vw), ${MAX_SPACE.xxxxl}px)`,
+})
+export const width = stylex.defineVars({
+	min: `${MIN_WIDTH}px`,
+	max: `${MAX_WIDTH}px`,
 })

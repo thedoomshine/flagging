@@ -5,7 +5,7 @@ import { useStore } from '@nanostores/react'
 import * as stylex from '@stylexjs/stylex'
 import { atom, computed, type WritableAtom } from 'nanostores'
 
-import { color } from '../globalTokens.stylex'
+import { color, font } from '../globalTokens.stylex'
 
 const EMOJI = [
 	'🖤',
@@ -44,7 +44,7 @@ const handleIncrement = (store: WritableAtom, length: number) => {
 let intervalID: NodeJS.Timeout | undefined
 export default function FooterLink() {
 	const handleMouseEnter = () => {
-		intervalID = setInterval(incrementEmoji, 500)
+		intervalID = setInterval(incrementEmoji, 325)
 		incrementEmoji()
 		incrementAuthor()
 	}
@@ -77,7 +77,7 @@ function Emoji() {
 
 function Author() {
 	const author = useStore($author)
-	return <div style={{ width: '11ch' }}>{author}</div>
+	return <div style={{ width: '13ch' }}>{author}</div>
 }
 
 const styles = stylex.create({
@@ -87,7 +87,9 @@ const styles = stylex.create({
 		alignItems: 'center',
 	},
 	link: {
+		fontFamily: font.title,
 		textDecoration: 'underline',
+		whiteSpace: 'nowrap',
 		':hover': {
 			textDecorationColor: color.red,
 		},
