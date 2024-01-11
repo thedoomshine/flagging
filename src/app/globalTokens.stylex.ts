@@ -19,7 +19,6 @@ export const color = stylex.defineVars({
 	red: '#ff2800', // fisting
 	coral: '#ff7f50', // toes
 	apricot: '#fbceb1', // chubby
-	brown: '#654321', // scat
 	orange: '#ff9f00', // anything
 	mustard: '#ffdb58', // hung / size queen
 	yellow: '#ffe135', // piss
@@ -28,7 +27,7 @@ export const color = stylex.defineVars({
 	greenKelly: '#4cbb17', // renting / buying
 	greenHunter: '#355e3b', // big / little
 	blueRobinsEgg: '#1fcecb', // 69
-	blueTeal: '#008080', // cbt
+	teal: '#008080', // cbt
 	blueLight: '#add8e6', // oral
 	blueNavy: '#000080', // top / bottom
 	lavender: '#734f96', // drag
@@ -100,15 +99,17 @@ const INTERCEPT = {
 }
 
 export const font = stylex.defineVars({
-	sans: [
-		'"Atkinson Hyperlegible"',
-		'system-ui',
-		'sans-serif',
+	sans: ['"Atkinson Hyperlegible"', 'system-ui', 'sans-serif'].join(', '),
+	serif: [
+		'Superclarendon',
+		'"Bookman Old Style"',
+		'"URW Bookman"',
+		'"URW Bookman L"',
+		'"Georgia Pro"',
+		'Georgia',
+		'serif',
 	].join(', '),
-	title: [
-		'Caprasimo',
-		'sans-serif',
-	].join(', '),
+	title: ['Caprasimo', 'sans-serif'].join(', '),
 })
 
 export const text = stylex.defineVars({

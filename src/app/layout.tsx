@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-page-custom-font */
+import '../../public/fonts/fonts.css'
 import './globals.css'
 
 import * as stylex from '@stylexjs/stylex'
@@ -15,7 +16,7 @@ const styles = stylex.create({
 		justifyContent: 'center',
 	},
 	body: {
-		backgroundColor: color.black,
+		backgroundColor: '#000',
 		color: color.white,
 		fontSize: text.md,
 		fontFamily: font.sans,

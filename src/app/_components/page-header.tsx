@@ -22,7 +22,7 @@ const styles = stylex.create({
 	},
 	title: {
 		backgroundColor: color.black,
-		lineHeight: .9,
+		lineHeight: 0.9,
 		position: 'relative',
 		zIndex: 1,
 	},
@@ -44,7 +44,8 @@ export default function PageHeader() {
 				href='/'
 				{...stylex.props(styles.link)}
 			>
-				<span {...stylex.props(styles.title)}>flagg.ing</span> <Logo {...stylex.props(styles.logo)} />
+				<span {...stylex.props(styles.title)}>flagg.ing</span>
+				<Logo {...stylex.props(styles.logo)} />
 			</Link>
 		</header>
 	)

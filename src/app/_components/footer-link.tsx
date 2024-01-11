@@ -1,11 +1,9 @@
 'use client'
 
-import Link from 'next/link'
+import Link from './link'
 import { useStore } from '@nanostores/react'
 import * as stylex from '@stylexjs/stylex'
 import { atom, computed, type WritableAtom } from 'nanostores'
-
-import { color, font } from '../globalTokens.stylex'
 
 const EMOJI = [
 	'🖤',
@@ -63,7 +61,6 @@ export default function FooterLink() {
 				onMouseLeave={handleMouseLeave}
 				href='https://bsky.app/profile/thedoomshine.social'
 				target='_blank'
-				{...stylex.props(styles.link)}
 			>
 				<Author />
 			</Link>
@@ -85,13 +82,5 @@ const styles = stylex.create({
 		display: 'flex',
 		gap: '0.5ch',
 		alignItems: 'center',
-	},
-	link: {
-		fontFamily: font.title,
-		textDecoration: 'underline',
-		whiteSpace: 'nowrap',
-		':hover': {
-			textDecorationColor: color.red,
-		},
 	},
 })

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import Link from 'next/link'
+import Link from './app/_components/link'
 import * as stylex from '@stylexjs/stylex'
 import type { StyleXVar } from '@stylexjs/stylex/lib/StyleXTypes'
 import type { MDXComponents } from 'mdx/types'
 
-import { color, font, text } from './app/globalTokens.stylex'
+import { font, text } from './app/globalTokens.stylex'
 
 type TitleProps = {
 	level: 1 | 2 | 3 | 4 | 5
@@ -32,18 +32,10 @@ const styles = stylex.create({
 		textWrap: 'balance',
 	},
 	strong: {
-		fontWeight: 700,
+		fontWeight: 900,
 	},
 	em: {
 		fontStyle: 'italic',
-	},
-	link: {
-		fontFamily: font.title,
-		whiteSpace: 'nowrap',
-		':hover': {
-			textDecorationLine: 'underline',
-			textDecorationColor: color.orange,
-		},
 	},
 	paragraph: {
 		marginTop: '1em',
@@ -79,8 +71,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 	return {
 		a: ({ href, children }) => (
 			<Link
-				href={href!}
-				{...stylex.props(styles.link)}
+				href={href ?? ''}
 			>
 				{children}
 			</Link>
