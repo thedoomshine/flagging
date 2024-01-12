@@ -32,6 +32,7 @@ const styles = stylex.create({
 		textWrap: 'balance',
 	},
 	strong: {
+		fontFamily: font.title,
 		fontWeight: 900,
 	},
 	em: {

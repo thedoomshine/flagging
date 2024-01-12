@@ -9,7 +9,7 @@ const styles = stylex.create({
 		float: 'left',
 		fontSize: text.h1,
 		lineHeight: 0.8,
-		paddingRight: '0.125em',
+		paddingRight: '0.25em',
     textTransform: 'uppercase',
 	},
 })
