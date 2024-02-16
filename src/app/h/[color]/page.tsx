@@ -11,6 +11,7 @@ type PageProps = {
 
 export type MDXModuleProps = {
 	default: MDXContent
+	Preview: MDXContent
 	meta: {
 		title: string
 		left: string
@@ -18,6 +19,7 @@ export type MDXModuleProps = {
 		name: string
 		value: string
 		pattern?: string
+		snippet: HTMLParagraphElement
 	}
 }
 

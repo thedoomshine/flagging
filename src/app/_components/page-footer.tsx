@@ -1,13 +1,13 @@
 import * as stylex from '@stylexjs/stylex'
 
-import { color, spacing, text } from '../globalTokens.stylex'
+import { color, spacing, text, ui } from '../globalTokens.stylex'
 import FooterLink from './footer-link'
 
 const styles = stylex.create({
 	footer: {
 		display: 'grid',
 		placeContent: 'end',
-		backgroundColor: color.black,
+		backgroundColor: ui.black,
 		fontSize: text.sm,
 		gridColumn: 'content / right-gutter',
 		padding: `${spacing.sm} 0`,

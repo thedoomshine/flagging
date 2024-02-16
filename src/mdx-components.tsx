@@ -46,6 +46,9 @@ const styles = stylex.create({
 			marginTop: 0,
 		},
 	},
+	fullParagraph: {
+		width: '100%',
+	},
 	...HEADING_LEVEL,
 })
 

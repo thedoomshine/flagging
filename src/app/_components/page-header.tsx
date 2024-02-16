@@ -2,12 +2,12 @@ import Link from 'next/link'
 import * as stylex from '@stylexjs/stylex'
 
 import Logo from '../_patterns/default.svg'
-import { color, font, spacing } from '../globalTokens.stylex'
+import { color, font, spacing, ui } from '../globalTokens.stylex'
 
 const styles = stylex.create({
 	header: {
 		display: 'grid',
-		backgroundColor: color.black,
+		backgroundColor: ui.black,
 		fontFamily: font.title,
 		fontSize: '2rem',
 		gridColumn: 'content / right-gutter',
@@ -21,7 +21,7 @@ const styles = stylex.create({
 		position: 'relative',
 	},
 	title: {
-		backgroundColor: color.black,
+		backgroundColor: ui.black,
 		lineHeight: 0.9,
 		position: 'relative',
 		zIndex: 1,

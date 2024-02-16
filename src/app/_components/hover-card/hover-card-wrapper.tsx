@@ -10,23 +10,38 @@ import {
 } from '@radix-ui/react-hover-card'
 import * as stylex from '@stylexjs/stylex'
 
-import { color, spacing } from '../../globalTokens.stylex'
+import { color, spacing, ui } from '../../globalTokens.stylex'
 import Link from '../link'
 
 const styles = stylex.create({
-	content: {
-		backgroundColor: color.white,
-		border: `solid 1px ${color.red}`,
-		borderRadius: '8px',
-		color: color.black,
-		height: '240px',
-		maxWidth: '640px',
-		padding: spacing.sm,
-		position: 'absolute',
+	wrapper: {
+		maxHeight: '320px',
+		maxWidth: '480px',
+		height: '100dvh',
+		width: '100dvw',
 		overflow: 'auto',
+		left: '0',
+		scrollbarColor: `${color.gray} transparent`,
+		"::-webkit-scrollbar": {
+			backgroundColor: 'transparent',
+		},
+		"::-webkit-scrollbar-thumb": {
+			backgroundColor: color.gray,
+		}
+	},
+	content: {
+		backgroundColor: '#000',
+		borderRadius: '8px',
+		gridTemplateColumns: '1fr',
+		gridTemplateRows: '1fr auto',
+		alignContent: 'center',
+		justifyContent: 'center',
+		padding: spacing.sm,
 	},
 	arrow: {
-		fill: color.white,
+		height: '16px',
+		width: '24px',
+		fill: ui.black,
 	},
 })
 
@@ -43,14 +58,18 @@ export default function HoverCardWrapper({
 	return (
 		<Root>
 			<Trigger asChild>
-				<Link href={`/h/${color}`}>{trigger}</Link>
+				<span {...stylex.props(styles.wrapper)}>
+					<Link href={`/h/${color}`}>{trigger}</Link>
+				</span>
 			</Trigger>
-			{/* <Portal> */}
-				<Content>
-					<div {...stylex.props(styles.content)}>{children}</div>
-					<Arrow {...stylex.props(styles.arrow)} />
+			<Portal>
+				<Content align='start' {...stylex.props(styles.wrapper)}>
+					<div {...stylex.props(styles.content)}>
+						{children}
+						<Arrow {...stylex.props(styles.arrow)} />
+					</div>
 				</Content>
-			{/* </Portal> */}
+			</Portal>
 		</Root>
 	)
 }

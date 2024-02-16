@@ -7,7 +7,7 @@ const MAX_SCALE = 1.333
 const MIN_BASE_SIZE = 16
 const MAX_BASE_SIZE = 20
 
-export const color = stylex.defineVars({
+export const COLOR = {
 	black: '#000000', // s&m
 	charcoal: '#333333', // latex
 	gray: '#808080', // bondage
@@ -37,7 +37,52 @@ export const color = stylex.defineVars({
 	fuchsia: '#ff00ff', // spanking
 	pinkDark: '#e75480', // tit torture
 	pinkLight: '#ffb6c1', // dildo
+} as const
+
+export const color = stylex.defineVars(COLOR)
+
+export const uiVars = stylex.defineVars({
+	['black-50']: '#fafafa',
+	['black-100']: '#f5f5f5',
+	['black-200']: '#e5e5e5',
+	['black-300']: '#d4d4d4',
+	['black-400']: '#a3a3a3',
+	['black-500']: '#737373',
+	['black-600']: '#525252',
+	['black-700']: '#404040',
+	['black-800']: '#262626',
+	['black-900']: '#171717',
+	['black-950']: '#000000',
 })
+
+export const ui = {
+	black: {... new Proxy(
+		{
+			['50']:  uiVars['black-50'],
+			['100']: uiVars['black-100'],
+			['200']: uiVars['black-200'],
+			['300']: uiVars['black-300'],
+			['400']: uiVars['black-400'],
+			['500']: uiVars['black-500'],
+			['600']: uiVars['black-600'],
+			['700']: uiVars['black-700'],
+			['800']: uiVars['black-800'],
+			['900']: uiVars['black-900'],
+			['950']: uiVars['black-950'],
+		},
+		{
+			get: (target, name) => {
+				if (target && target.hasOwnProperty(name)) {
+					return target[name as keyof typeof target]
+				}
+				return target[950]
+			},
+		}
+	)},
+	white: uiVars['black-50'],
+	gray: uiVars['black-400'],
+	red: color.red,
+}
 
 /**
  * o--o o    o   o o-O-o o-o       o--o  o-o  o   o o-O-o  o-o

@@ -6,7 +6,7 @@ import * as stylex from '@stylexjs/stylex'
 
 import PageFooter from './_components/page-footer'
 import PageHeader from './_components/page-header'
-import { color, font, spacing, text, width } from './globalTokens.stylex'
+import { color, font, spacing, text, width, ui } from './globalTokens.stylex'
 
 const styles = stylex.create({
 	html: {
@@ -16,8 +16,8 @@ const styles = stylex.create({
 		justifyContent: 'center',
 	},
 	body: {
-		backgroundColor: '#000',
-		color: color.white,
+		backgroundColor: ui.black,
+		color: ui.white,
 		fontSize: text.md,
 		fontFamily: font.sans,
 		WebkitFontSmoothing: 'antialiased',
