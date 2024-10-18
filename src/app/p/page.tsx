@@ -1,25 +1,11 @@
+'use server'
+
 import * as stylex from '@stylexjs/stylex'
-import fs from 'fs/promises'
-import path from 'path'
-import { meetsContrastGuidelines } from 'polished'
-import { camel } from 'radash'
-import { COLOR, color, font, text } from '../globalTokens.stylex'
+import { color, font, text } from '../globalTokens.stylex'
 import Hanky from '../_patterns/default.svg'
-
-export const getColorVar = (clr: string) => COLOR[clr as keyof typeof COLOR]
-
-export const getColorHex = (clr: string) => color[clr as keyof typeof color]
-
-export const getColorContrast = (clr: string, opaque = false) => meetsContrastGuidelines(COLOR[clr as keyof typeof COLOR], COLOR.black).AA ? opaque ? color.black : 'transparent' : color.white
-
-export const getFiles = async () => {
-  const colorFiles = path.resolve('./src/app/h/_colors')
-  const filenames = await fs.readdir(colorFiles)
-  const colors = filenames.map((name) => name?.split('.')?.[0]);
-  return colors
-};
-
-export const normalizeFileName = (color: string) => String(color).split('-').join(' ')
+import { getColors } from '../_utils/getColors'
+import { getColorContrast } from '../_utils/getColorContrast'
+import { getColorHex } from '../_utils/getColorHex'
 
 const styles = stylex.create({
 	container: {
@@ -44,26 +30,26 @@ const styles = stylex.create({
     border: `solid 1px ${color.white}`,
     gridRow: '2',
   },
-  box: (clr: string) => ({
+  box: (clr) => ({
     display: 'flex',
     alignItems: 'center',
     padding: '0.5rem 1rem',
     gap: '0.5rem',
-    border: `solid 1px ${getColorVar(clr)}`,
+    border: `solid 1px ${clr}`,
     borderRadius: '1rem',
   }),
-  color: (clr: string) => ({
-		'--hanky-bg': clr,
-		'--hanky-pattern': clr,
+  color: (clr) => ({
+		'--hanky-bg': getColorHex(clr),
+		'--hanky-pattern': getColorContrast(clr, true),
     display: 'flex',
     WebkitTextStrokeColor: getColorContrast(clr),
     WebkitTextStrokeWidth: '1px',
-    color: getColorHex(clr),
+    color: clr,
 		fontFamily: font.title,
 		fontSize: text.h4,
     position: 'relative',
 	}),
-  hanky: (clr: string) => ({
+  hanky: (clr) => ({
 		'--hanky-bg': getColorHex(clr),
 		'--hanky-pattern': getColorContrast(clr, true),
 		height: '1.5em',
@@ -73,15 +59,15 @@ const styles = stylex.create({
 })
 
 export default async function Pocket() {
-  const colors = await getFiles()
+  const colors = await getColors()
 
   return <div {...stylex.props(styles.container)}>
     <div {...stylex.props(styles.shelf(colors.length))}>
       {colors.map((clr) => clr &&
-        <div {...stylex.props(styles.box(camel(clr)))}>
-          <Hanky {...stylex.props(styles.hanky(camel(clr)))} />
-          <span key={clr} {...stylex.props(styles.color(camel(clr)),)}>
-            {normalizeFileName(clr)}
+        <div {...stylex.props(styles.box(clr))}>
+          <Hanky {...stylex.props(styles.hanky(clr))} />
+          <span key={clr.name} {...stylex.props(styles.color(clr),)}>
+            {clr.name} {clr.kink}
           </span>
         </div>)}
     </div>

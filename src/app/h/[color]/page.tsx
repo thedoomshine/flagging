@@ -9,18 +9,20 @@ type PageProps = {
 	}
 }
 
+export type MDXMetaProps = {
+	kink: string
+	left: string
+	right: string
+	name: string
+	hex: string
+	pattern?: string
+	snippet: HTMLParagraphElement
+}
+
 export type MDXModuleProps = {
 	default: MDXContent
 	Preview: MDXContent
-	meta: {
-		title: string
-		left: string
-		right: string
-		name: string
-		value: string
-		pattern?: string
-		snippet: HTMLParagraphElement
-	}
+	meta: MDXMetaProps
 }
 
 const styles = stylex.create({
@@ -39,8 +41,8 @@ export default async function Page({ params, ...props }: PageProps) {
 
 	return (
 		<>
-			<h1>{meta.title}</h1>
-			<Hanky {...stylex.props(styles.hanky(meta.value))} />
+			<h1>{meta.kink}</h1>
+			<Hanky {...stylex.props(styles.hanky(meta.hex))} />
 			<MDXComponent {...props} />
 		</>
 	)

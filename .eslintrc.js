@@ -1,38 +1,15 @@
-/** @type {import('eslint').Linter.Config} */
-const config = {
-	parser: '@typescript-eslint/parser',
-	parserOptions: {
-		project: true,
-	},
-	plugins: ['@typescript-eslint', '@stylexjs'],
-	extends: [
-		'next/core-web-vitals',
-		'plugin:@typescript-eslint/recommended-type-checked',
-		'plugin:@typescript-eslint/stylistic-type-checked',
-	],
-	rules: {
-		'@typescript-eslint/array-type': 'off',
-		'@typescript-eslint/consistent-type-definitions': 'off',
+// @ts-check
 
-		'@typescript-eslint/consistent-type-imports': [
-			'warn',
-			{
-				prefer: 'type-imports',
-				fixStyle: 'inline-type-imports',
-			},
-		],
-		'@typescript-eslint/no-unused-vars': [
-			'warn',
-			{ argsIgnorePattern: '^_' },
-		],
-		'@typescript-eslint/require-await': 'off',
-		'@typescript-eslint/no-misused-promises': [
-			'error',
-			{
-				checksVoidReturn: { attributes: false },
-			},
-		],
-	},
-}
+import eslint from '@eslint/js'
+import stylex from "@stylexjs/eslint-plugin"
+import tseslint from 'typescript-eslint'
 
-module.exports = config
+export default tseslint.config(
+  eslint.configs.recommended,
+  ...tseslint.configs.recommended,
+	{
+		plugins: {
+			stylex
+		}
+	}
+);

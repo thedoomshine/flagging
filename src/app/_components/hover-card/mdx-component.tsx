@@ -19,7 +19,7 @@ export default async function MDXComponent({ color: flagColor }: { color: string
 	)) as MDXModuleProps
 	return (
 		<>
-			<h2 {...stylex.props(styles.title(flagColor))}>{ meta.title }</h2>
+			<h2 {...stylex.props(styles.title(flagColor))}>{ meta.kink }</h2>
 			<Preview />
 		</>
 	)
