@@ -15,28 +15,28 @@ export const COLOR = {
 	holstein: '#fefcff', // milk (cow print)
 	white: '#f8f8ff', // hand job
 	maroon: '#800000', // blood
-	redDark: '#a40000', // 2 handed fisting
+	darkRed: '#a40000', // 2 handed fisting
 	red: '#ff2800', // fisting
 	coral: '#ff7f50', // toes
 	apricot: '#fbceb1', // chubby
 	orange: '#ff9f00', // anything
 	mustard: '#ffdb58', // hung / size queen
 	yellow: '#ffe135', // piss
-	yellowPale: '#fffacd', // spit
-	greenLime: '#bfff00', // dining / buying
-	greenKelly: '#4cbb17', // renting / buying
-	greenHunter: '#355e3b', // big / little
-	blueRobinsEgg: '#1fcecb', // 69
+	paleYellow: '#fffacd', // spit
+	limeGreen: '#bfff00', // dining / buying
+	kellyGreen: '#4cbb17', // renting / buying
+	hunterGreen: '#355e3b', // big / little
+	robinsEggBlue: '#1fcecb', // 69
 	teal: '#008080', // cbt
-	blueLight: '#add8e6', // oral
-	blueNavy: '#000080', // top / bottom
+	lightBlue: '#add8e6', // oral
+	navyBlue: '#000080', // top / bottom
 	lavender: '#734f96', // drag
 	purple: '#9370db', // piercing
 	mauve: '#e0b0ff', // navel worship
 	magenta: '#8b008b', // armpits
 	fuchsia: '#ff00ff', // spanking
-	pinkDark: '#e75480', // tit torture
-	pinkLight: '#ffb6c1', // dildo
+	darkPink: '#e75480', // tit torture
+	lightPink: '#ffb6c1', // dildo
 } as const
 
 export const color = stylex.defineVars(COLOR)

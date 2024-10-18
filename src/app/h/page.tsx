@@ -5,6 +5,7 @@ import { meetsContrastGuidelines } from 'polished'
 import { camel } from 'radash'
 import { COLOR, color, font, text } from '../globalTokens.stylex'
 import Hanky from '../_patterns/default.svg'
+import Link from '../_components/link'
 
 export const getColorVar = (clr: string) => COLOR[clr as keyof typeof COLOR]
 
@@ -23,49 +24,31 @@ export const normalizeFileName = (color: string) => String(color).split('-').joi
 
 const styles = stylex.create({
 	container: {
-		display: 'grid',
-		gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-    gridTemplateRows: 'auto 1fr',
+		display: 'flex',
+    flexDirection: 'column',
     gap: '.5rem',
     height: '100%',
 	},
-  shelf: (length: number) => ({
-    display: 'grid',
-    gridTemplateColumns: `repeat(${length}, minmax(max-content, 1fr))`,
-    gap: '.5rem',
-    gridColumn: '1/-1',
-    gridRow: '1',
-    padding: '0.5rem',
-    border: `solid 1px ${color.white}`,
-    overflowX: 'auto',
-  }),
-  pocket: {
-    display: 'flex',
-    border: `solid 1px ${color.white}`,
-    gridRow: '2',
-  },
   box: (clr: string) => ({
+		'--hanky-bg': clr,
+		'--hanky-pattern': clr,
     display: 'flex',
     alignItems: 'center',
     padding: '0.5rem 1rem',
     gap: '0.5rem',
     border: `solid 1px ${getColorVar(clr)}`,
     borderRadius: '1rem',
+    backgroundColor: getColorHex(clr),
+    color: getColorContrast(clr, true),
   }),
-  color: (clr: string) => ({
-		'--hanky-bg': clr,
-		'--hanky-pattern': clr,
+  color: ({
     display: 'flex',
-    WebkitTextStrokeColor: getColorContrast(clr),
-    WebkitTextStrokeWidth: '1px',
-    color: getColorHex(clr),
+    color: 'currentColor',
 		fontFamily: font.title,
 		fontSize: text.h4,
     position: 'relative',
 	}),
-  hanky: (clr: string) => ({
-		'--hanky-bg': getColorHex(clr),
-		'--hanky-pattern': getColorContrast(clr, true),
+  hanky: ({
 		height: '1.5em',
     position: 'relative',
     top: '0.25rem'
@@ -76,16 +59,12 @@ export default async function Pocket() {
   const colors = await getFiles()
 
   return <div {...stylex.props(styles.container)}>
-    <div {...stylex.props(styles.shelf(colors.length))}>
-      {colors.map((clr) => clr &&
-        <div {...stylex.props(styles.box(camel(clr)))}>
-          <Hanky {...stylex.props(styles.hanky(camel(clr)))} />
-          <span key={clr} {...stylex.props(styles.color(camel(clr)),)}>
-            {normalizeFileName(clr)}
-          </span>
-        </div>)}
-    </div>
-    <div {...stylex.props(styles.pocket)}></div>
-    <div {...stylex.props(styles.pocket)}></div>
+  {colors.map((clr) => clr &&
+    <Link href={`/h/${clr}`} {...stylex.props(styles.box(camel(clr)))}>
+      <Hanky {...stylex.props(styles.hanky)} />
+      <span key={clr} {...stylex.props(styles.color)}>
+        {normalizeFileName(clr)}
+      </span>
+    </Link>)}
   </div>
 }
