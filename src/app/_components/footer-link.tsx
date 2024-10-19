@@ -19,7 +19,7 @@ const EMOJI = [
 	'👀',
 ] as const
 
-const AUTHOR = ['morgan ashly', 'thedoomshine'] as const
+const AUTHOR = ['ts elliott smith', 'thedoomshine'] as const
 
 const $emojiCount = atom(0)
 const $authorCount = atom(0)

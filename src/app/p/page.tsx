@@ -1,11 +1,23 @@
 'use server'
 
 import * as stylex from '@stylexjs/stylex'
-import { color, font, text } from '../globalTokens.stylex'
-import Hanky from '../_patterns/default.svg'
+import { COLOR, color, font, text } from '../globalTokens.stylex'
+import Hanky from '../_components/hanky'
 import { getColors } from '../_utils/getColors'
-import { getColorContrast } from '../_utils/getColorContrast'
 import { getColorHex } from '../_utils/getColorHex'
+import { MDXMetaProps } from '../h/[color]/page'
+import { meetsContrastGuidelines, darken, lighten, readableColor } from 'polished'
+
+
+const getCardBG = (clr: MDXMetaProps) => {
+  const color = getColorHex(clr);
+  const meets = meetsContrastGuidelines(color, COLOR.black)
+
+  if (meets.AA) {
+    return darken('0.15', color)
+  }
+  return lighten('0.15', color)
+}
 
 const styles = stylex.create({
 	container: {
@@ -30,32 +42,34 @@ const styles = stylex.create({
     border: `solid 1px ${color.white}`,
     gridRow: '2',
   },
-  box: (clr) => ({
+  box: (clr: MDXMetaProps) => ({
     display: 'flex',
     alignItems: 'center',
-    padding: '0.5rem 1rem',
     gap: '0.5rem',
-    border: `solid 1px ${clr}`,
+    backgroundColor: getCardBG(clr),
+    height: '8rem',
     borderRadius: '1rem',
+    borderTopLeftRadius: '0',
+    color: readableColor(getCardBG(clr), COLOR.black, COLOR.white),
+    position: 'relative',
   }),
-  color: (clr) => ({
-		'--hanky-bg': getColorHex(clr),
-		'--hanky-pattern': getColorContrast(clr, true),
+  color: ({
     display: 'flex',
-    WebkitTextStrokeColor: getColorContrast(clr),
-    WebkitTextStrokeWidth: '1px',
-    color: clr,
+    flexDirection: 'column',
+    gap: '0.5rem',
+    color: 'currentColor',
 		fontFamily: font.title,
-		fontSize: text.h4,
-    position: 'relative',
+		fontSize: text.h5,
+    padding: '0.5rem 1rem',
 	}),
-  hanky: (clr) => ({
-		'--hanky-bg': getColorHex(clr),
-		'--hanky-pattern': getColorContrast(clr, true),
-		height: '1.5em',
-    position: 'relative',
-    top: '0.25rem'
+  hanky: ({
+    color: 'currentColor',
+		height: '100%',
 	}),
+  name: ({
+    fontSize: text.md,
+    textTransform: 'capitalize',
+  })
 })
 
 export default async function Pocket() {
@@ -63,12 +77,12 @@ export default async function Pocket() {
 
   return <div {...stylex.props(styles.container)}>
     <div {...stylex.props(styles.shelf(colors.length))}>
-      {colors.map((clr) => clr &&
+      {colors.sort((a, b) => a.kink.localeCompare(b.kink, 'en', { sensitivity: 'base' })).map((clr) => clr &&
         <div {...stylex.props(styles.box(clr))}>
-          <Hanky {...stylex.props(styles.hanky(clr))} />
-          <span key={clr.name} {...stylex.props(styles.color(clr),)}>
-            {clr.name} {clr.kink}
-          </span>
+          <Hanky pattern={clr.pattern} fill={getColorHex(clr)} {...stylex.props(styles.hanky)} />
+          <div key={clr.name} {...stylex.props(styles.color)}><span>{clr.kink}</span>
+          <span {...stylex.props(styles.name)}>{clr.name}</span>
+          </div>
         </div>)}
     </div>
     <div {...stylex.props(styles.pocket)}></div>

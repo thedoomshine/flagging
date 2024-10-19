@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import * as stylex from '@stylexjs/stylex'
 
-import Logo from '../_patterns/default.svg'
-import { color, font, spacing, ui } from '../globalTokens.stylex'
+import Logo from '../_components/hanky'
+import { COLOR, font, spacing, ui } from '../globalTokens.stylex'
 
 const styles = stylex.create({
 	header: {
@@ -27,8 +27,6 @@ const styles = stylex.create({
 		zIndex: 1,
 	},
 	logo: {
-		'--hanky-bg': color.orange,
-		'--hanky-pattern': color.orange,
 		height: '1.75em',
 		position: 'absolute',
 		top: 'calc(100% - 12px)',
@@ -45,7 +43,7 @@ export default function PageHeader() {
 				{...stylex.props(styles.link)}
 			>
 				<span {...stylex.props(styles.title)}>flagg.ing</span>
-				<Logo {...stylex.props(styles.logo)} />
+				<Logo pattern="none" fill={COLOR.orange} {...stylex.props(styles.logo)} />
 			</Link>
 		</header>
 	)

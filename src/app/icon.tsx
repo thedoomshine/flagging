@@ -1,6 +1,7 @@
 import { ImageResponse } from 'next/og'
 
-import Hanky from './_patterns/default.svg'
+import Hanky from './_components/hanky'
+import { COLOR } from './globalTokens.stylex'
 
 // Route segment config
 // export const runtime = 'edge'
@@ -26,11 +27,12 @@ export default async function Icon() {
 				}}
 			>
 				<Hanky
+					pattern="none"
+					fill={COLOR.orange}
 					style={{
 						height: '100%',
 						width: '100%',
-						'--hanky-bg': 'red',
-						'--hanky-pattern': '#fff',
+						color: 'black',
 					}}
 				/>
 			</div>

@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex'
 import type { MDXContent } from 'mdx/types'
 
-import Hanky from '../../_patterns/default.svg'
+import Hanky from '../../_components/hanky'
 
 type PageProps = {
 	params: {
@@ -26,9 +26,7 @@ export type MDXModuleProps = {
 }
 
 const styles = stylex.create({
-	hanky: (color: string) => ({
-		'--hanky-bg': color,
-		'--hanky-pattern': color,
+	hanky: ({
 		float: 'left',
 		maxHeight: '2em',
 	}),
@@ -42,7 +40,7 @@ export default async function Page({ params, ...props }: PageProps) {
 	return (
 		<>
 			<h1>{meta.kink}</h1>
-			<Hanky {...stylex.props(styles.hanky(meta.hex))} />
+			<Hanky pattern={meta.pattern} fill={meta.hex} {...stylex.props(styles.hanky)} />
 			<MDXComponent {...props} />
 		</>
 	)
